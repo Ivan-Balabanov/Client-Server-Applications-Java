@@ -32,4 +32,10 @@ public class UserDao {
         db.clear();
         idAutoIncrement = 0;
     }
+
+    public Optional<User> getByName(String name) {
+        return db.stream()
+                .filter(u -> u.getName().equals(name))
+                .findFirst();
+    }
 }
