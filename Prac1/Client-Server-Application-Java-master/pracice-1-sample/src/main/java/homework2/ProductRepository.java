@@ -18,9 +18,9 @@ public class ProductRepository {
                 .anyMatch(p -> p.getName().equalsIgnoreCase(name));
     }
 
-    public Product create(String name, double price, int quantity) {
+    public Product create(String name, String category, double price, int quantity) {
         int id = idSequence.getAndIncrement();
-        Product p = new Product(id, name, price, quantity);
+        Product p = new Product(id, name, category, price, quantity);
         store.put(id, p);
         return p;
     }

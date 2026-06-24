@@ -64,10 +64,11 @@ public class ProductHandler implements HttpHandler {
             return;
         }
 
-        double price    = body.has("price")    ? body.get("price").asDouble()  : 0.0;
-        int    quantity = body.has("quantity") ? body.get("quantity").asInt()   : 0;
+        double price = body.has("price") ? body.get("price").asDouble() : 0.0;
+        int quantity = body.has("quantity") ? body.get("quantity").asInt() : 0;
+        String category = body.has("category") ? body.get("category").asToken().asString() : "0";
 
-        Product created = repo.create(name, price, quantity);
+        Product created = repo.create(name, category, price, quantity);
         LoginHandler.sendResponse(exchange, 201, toJson(created));
     }
 
